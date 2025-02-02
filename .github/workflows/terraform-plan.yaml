@@ -8,11 +8,19 @@ permissions:
   contents: read
   pull-requests: write
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
 jobs:
-  terraform:
+  plan:
     runs-on: ubuntu-latest
     steps:
-      - name: "Check out repository code"
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: "List files in repository"
-        run: ls -la
+
+      - name: terraform plan
+        uses: dflook/terraform-plan@v1
+        with:
+          path: terraform/eks
