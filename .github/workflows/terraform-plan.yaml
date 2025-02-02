@@ -1,0 +1,18 @@
+name: 'Terraform Plan'
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check out repository code"
+        uses: actions/checkout@v4
+      - name: "List files in repository"
+        run: ls -la
