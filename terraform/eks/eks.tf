@@ -45,7 +45,7 @@ resource "aws_eks_cluster" "example" {
   version  = "1.31"
 
   vpc_config {
-    subnet_ids = module.vpc.private_subnet_arns
+    subnet_ids = module.vpc.private_subnets
   }
 
   # Ensure that IAM Role permissions are created before and deleted
